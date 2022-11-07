@@ -11,3 +11,12 @@ const kWidth = SizedBox(width: 10,);
 
 
   BorderRadius kRadius20 = BorderRadius.circular(20);
+
+
+  const kmainImageUrl = 'assets/images/shyamsingh.jpg';
+
+
+  const kWhite = Colors.white;
+
+  const TextStyle kTextStyle =
+    TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
