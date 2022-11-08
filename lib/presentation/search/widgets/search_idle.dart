@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflix/presentation/widgets/main_title.dart';
 
+import '../../../application/search/serach_bloc.dart';
+import '../../../core/constant_strings.dart';
 import '../../../core/constants.dart';
 
 class SearchIdle extends StatelessWidget {
@@ -11,19 +14,40 @@ class SearchIdle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      // ignore: prefer_const_literals_to_create_immutables
       children: [
-         const MainTitle(
+        const MainTitle(
           title: 'Top Searchs',
         ),
         kHeight,
         Expanded(
-          child: ListView.separated(
-              itemBuilder: (ctx, index) => const TopSearchItemTile(
-                    title: 'Spiderman',
-                  ),
-              separatorBuilder: (ctx, index) => kHeight,
-              itemCount: 10),
+          child: BlocBuilder<SearchBloc, SearchState>(
+            builder: (context, state) {
+              if (state.isLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (state.isError) {
+                return const Center(
+                  child: Text('Something erroe occured while getting data'),
+                );
+              } else if (state.idealList.isEmpty) {
+                return const Center(
+                  child: Text('List is Empty'),
+                );
+              }
+              return ListView.separated(
+                itemBuilder: (context, index) {
+                  final movie = state.idealList[index];
+                  return TopSearchItemTile(
+                      title: movie.title ?? 'No Title Provide',
+                      image: '$imageAppendurl${movie.posterpath}');
+                },
+                separatorBuilder: (context, index) =>
+                    const SizedBox(height: 18),
+                itemCount: state.idealList.length,
+              );
+            },
+          ),
         )
       ],
     );
@@ -34,8 +58,7 @@ class TopSearchItemTile extends StatelessWidget {
   const TopSearchItemTile({
     super.key,
     required this.title,
-    this.image =
-        'https://www.themoviedb.org/t/p/w355_and_h200_multi_faces/7ABsaBkO1jA2psC8Hy4IDhkID4h.jpg',
+    required this.image,
   });
   final String title;
   final String image;
@@ -66,14 +89,14 @@ class TopSearchItemTile extends StatelessWidget {
           ),
         ),
         const CircleAvatar(
-          backgroundColor: Colors.white,
+          backgroundColor: kWhite,
           radius: 25,
           child: CircleAvatar(
             backgroundColor: kBlack,
             radius: 23,
             child: Icon(
               CupertinoIcons.play_fill,
-              color: Colors.white,
+              color: kWhite,
             ),
           ),
         )

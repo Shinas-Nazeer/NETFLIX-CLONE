@@ -19,11 +19,10 @@ class BackgroundImageWidget extends StatelessWidget {
           width: double.infinity,
           height: 600,
           decoration: BoxDecoration(
-        image: DecorationImage(
-          image:AssetImage(kmainImageUrl),
-          // image: NetworkImage(kmainImageUrl),
-          fit: BoxFit.cover,
-        ),
+            image: DecorationImage(
+              image: NetworkImage(kmainImageUrl),
+              fit: BoxFit.cover,
+            ),
           ),
         ),
         Positioned(
@@ -31,19 +30,17 @@ class BackgroundImageWidget extends StatelessWidget {
           left: 0,
           right: 0,
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.only(bottom: 10.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-               children: [
-                 CustomButton(icon: Icons.add, title: 'My List'),
-              playButton(),
+              children: [
+                CustomButton(icon: Icons.add, title: 'My List'),
+                playButton(),
                 CustomButton(icon: Icons.info, title: 'Info'),
-                  
-                  ],
+              ],
             ),
           ),
         )
-
       ],
     );
   }
@@ -55,14 +52,14 @@ TextButton playButton() {
     onPressed: () {},
     icon: Icon(
       Icons.play_arrow,
-      size: 40,
+      size: 25,
       color: kBlack,
     ),
     label: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 1),
       child: Text(
         'Play',
-        style: TextStyle(fontSize:18, color: kBlack),
+        style: TextStyle(fontSize: 20, color: kBlack),
       ),
     ),
   );

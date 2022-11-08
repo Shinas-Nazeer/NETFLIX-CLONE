@@ -32,7 +32,7 @@ class DownloadsImageWidget extends StatelessWidget {
             color: kBlack,
             image: DecorationImage(
               fit: BoxFit.cover,
-              image: AssetImage(image))),
+              image: NetworkImage(image))),
       ),
     );
   }

@@ -1,40 +1,58 @@
 
 
- import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 
 import '../../../core/constants.dart';
 
-class  VideoWidget extends StatelessWidget {
-  const  VideoWidget({super.key});
+class VideoWidget extends StatelessWidget {
+  final String image;
+  const VideoWidget({
+    Key? key,
+    required this.image,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.asset('assets/images/girl.jpg',
+        Image.network(
+          image,
           fit: BoxFit.cover,
           height: 170,
-          width: double.infinity,),
-          Positioned(
-             bottom: 10,
+          width: double.infinity,
+          loadingBuilder: (context, child, loadingProgress) {
+            if (loadingProgress == null) {
+              return child;
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+          },
+          errorBuilder: (context, error, trace) {
+            return const Center(
+                child: Icon(
+              Icons.wifi,
+              color: Colors.white,
+            ));
+          },
+        ),
+        Positioned(
+          bottom: 10,
           right: 10,
-            child: CircleAvatar(
-              backgroundColor: kBlack.withOpacity(0.8),
-               radius: 22,
-               child: IconButton(   onPressed: () {},
-               icon: Icon( Icons.volume_off,
+          child: CircleAvatar(
+            backgroundColor: kBlack.withOpacity(0.8),
+            radius: 22,
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.volume_off,
                 color: kWhite,
-                size: 20,),),
-
-            )
-          
-          )
-
+                size: 20,
+              ),
+            ),
+          ),
+        ),
       ],
-
     );
   }
 }

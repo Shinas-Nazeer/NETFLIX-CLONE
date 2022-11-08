@@ -13,7 +13,7 @@ const kWidth = SizedBox(width: 10,);
   BorderRadius kRadius20 = BorderRadius.circular(20);
 
 
-  const kmainImageUrl = 'assets/images/shyamsingh.jpg';
+  const kmainImageUrl = 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/wdbiMjXd4CxPfCx4r4Jfy8cGec0.jpg';
 
 
   const kWhite = Colors.white;

@@ -15,7 +15,7 @@ class ScreenMainPage extends StatelessWidget {
 
   final _pages=[
     ScreenHome(),
-    ScreenNews(),
+     ScreenNewAndHot(),
    ScreenFastLaugh(),
     ScreenSearch(),
     ScreenDownload()

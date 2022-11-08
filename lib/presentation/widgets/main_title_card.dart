@@ -8,30 +8,36 @@ import 'main_title.dart';
 
 class MainTitleCard extends StatelessWidget {
   const MainTitleCard({
-    Key? key, required this.title,
+    Key? key,
+    required this.title,
+    required this.posterPathlist,
   }) : super(key: key);
 
   final String title;
+  final List<String> posterPathlist;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      // ignore: prefer_const_literals_to_create_immutables
       children: [
+        kHeight,
         MainTitle(title: title),
         kHeight,
-      LimitedBox(
-        maxHeight: 200,
-        child: ListView(
-          scrollDirection: Axis.horizontal,
-          children: 
-            List.generate(10, (index) => const MainCard())
-          ,
+        LimitedBox(
+          maxHeight: 200,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: List.generate(
+              posterPathlist.length,
+              (index) => MainCard(
+                imageUrl: posterPathlist[index],
+              ),
+            ),
+          ),
         ),
-      )
-    
       ],
     );
   }
 }
-

@@ -2,16 +2,16 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:netflix/core/constants.dart';
+
 
 
 
 
 class MainCard extends StatelessWidget {
-  // final String imageUrl;
+  final String imageUrl;
   const MainCard({
     Key? key,
-    // required this.imageUrl,
+    required this.imageUrl,
   }) : super(key: key);
 
   @override
@@ -24,7 +24,7 @@ class MainCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         image: DecorationImage(
-          image: AssetImage('assets/images/mockroy.jpg'),
+          image: NetworkImage(imageUrl),
           fit: BoxFit.cover,
         ),
       ),

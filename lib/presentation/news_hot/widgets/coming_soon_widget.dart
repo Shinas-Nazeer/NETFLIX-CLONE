@@ -8,21 +8,21 @@ import 'package:netflix/presentation/news_hot/widgets/video_widget.dart';
 import '../../widgets/custom_button.dart';
 
 class ComingSoonWidget extends StatelessWidget {
-  // final String id;
-  // final String month;
-  // final String day;
-  // final String movieName;
-  // final String posterPath;
-  // final String description;
+  final String id;
+  final String month;
+  final String day;
+  final String movieName;
+  final String posterPath;
+  final String description;
 
   const ComingSoonWidget({
     Key? key,
-    // required this.id,
-    // required this.month,
-    // required this.day,
-    // required this.movieName,
-    // required this.description,
-    // required this.posterPath,
+    required this.id,
+    required this.month,
+    required this.day,
+    required this.movieName,
+    required this.description,
+    required this.posterPath,
   }) : super(key: key);
 
   @override
@@ -35,11 +35,11 @@ class ComingSoonWidget extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                'August',
+                month,
                 style: kTextStyle.copyWith(color: kGrey),
               ),
               Text(
-                '21',
+                day,
                 style: const TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
@@ -56,18 +56,19 @@ class ComingSoonWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                VideoWidget(),
+                VideoWidget(image: posterPath),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
                       child: Text(
-                        'Wonder Women',
+                        movieName,
                         maxLines: 1,
                         overflow: TextOverflow.clip,
                         style: const TextStyle(
-                          // letterSpacing: -5,
-                          fontSize: 30,
+                          // letterSpacing: -4,
+                          fontSize: 40,
+
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -77,11 +78,12 @@ class ComingSoonWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: const [
                           CustomButton(
-                            title: 'Remind Me',
+                            title: 'Remind    Me',
                             icon: Icons.notifications,
                             titleSize: 14,
                             iconSize: 20,
                           ),
+                        kWidth,
                           CustomButton(
                             title: 'Info',
                             icon: Icons.info,
@@ -94,12 +96,12 @@ class ComingSoonWidget extends StatelessWidget {
                     kWidth,
                   ],
                 ),
-                Text('Coming on August '),
+                Text('Coming on $month $day'),
                 kHeight,
-                Text('Wonder Women', style: kTextStyle),
+                Text(movieName, style: kTextStyle),
                 kHeight,
                 Text(
-                  'When her father unexpectedly passes away, young Ella finds herself at the mercy of her cruel stepmother and her daughters. Never one to give up hope, Ellas fortunes begin to change after meeting a dashing stranger in the woods.',
+                  description,
                   style: TextStyle(color: kGrey),
                 )
               ],

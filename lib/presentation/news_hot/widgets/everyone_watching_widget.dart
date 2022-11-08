@@ -6,14 +6,14 @@ import 'package:netflix/presentation/widgets/custom_button.dart';
 import '../../../core/constants.dart';
 
 class EveryoneWatchingWidget extends StatelessWidget {
-  // final String movieName;
-  // final String posterPath;
-  // final String description;
+  final String movieName;
+  final String posterPath;
+  final String description;
   const EveryoneWatchingWidget({
     Key? key,
-    // required this.movieName,
-    // required this.posterPath,
-    // required this.description,
+    required this.movieName,
+    required this.posterPath,
+    required this.description,
   }) : super(key: key);
 
   @override
@@ -23,7 +23,7 @@ class EveryoneWatchingWidget extends StatelessWidget {
       children: [
         kHeight,
         Text(
-           'Cinderella (2015)',
+          movieName,
           style: const TextStyle(
             fontSize: 17,
             fontWeight: FontWeight.bold,
@@ -31,12 +31,12 @@ class EveryoneWatchingWidget extends StatelessWidget {
         ),
         kHeight,
         Text(
-          'When her father unexpectedly passes away, young Ella finds herself at the mercy of her cruel stepmother and her daughters. Never one to give up hope, Ellas fortunes begin to change after meeting a dashing stranger in the woods',
+          description,
           style: const TextStyle(color: kGrey),
         ),
         SizedBox(height: 40),
         VideoWidget(
-          // image: posterPath,
+          image: posterPath,
         ),
         kHeight,
         Row(
